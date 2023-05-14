@@ -1,0 +1,50 @@
+<html>
+<head>
+ <script src="js/jquery-3.6.0.min.js">  
+ </script>   
+ <script type="text/javascript" language="javascript">  
+$(document).ready(function()
+     {
+     $("#btn1").click(function(){ 
+$("img").before(" <b>before text</b>."); 
+});
+ $("#btn2").click(function(){ 
+$("img").after("<i>after image</i>"); 
+});
+   
+ });
+</script>
+</head>
+<body> 
+<img src="Penguins.jpg" width=150 height=150>
+</img>
+ <button id="btn1">befor image</button> 
+<button id="btn2">After image</button>
+ </body>
+</html>
+
+###########################################################################
+
+Importpandasaspd
+Frommlxtend.preprocessingimportTransactionEncoder
+Frommlxtend.frequent_patternsimportapriori,association_rules
+
+Dataset={
+1:[“eggs”,”milk”,”bread”],
+2:[“eggs”,”apple”],
+3:[“milk”,”bread”],
+4:[“apple”,”milk”],
+5:[“milk”,”apple”,”bread”]
+}
+
+Te=TransactionEncoder()
+Te_ary=te.fit(dataset.values()).transform(dataset.values())
+Df=pd.DataFrame(te_ary,columns=te.columns_)
+
+Min_sup=0.4
+Frequent_itemsets=apriori(df,min_support=min_sup,use_colnames=True)
+Association_rules=association_rules(frequent_itemsets,metric=”confidence”,
+min_threshold=0.6)
+
+Print(“FrequentItemsets:\n”,frequent_itemsets)
+Print(“\nAssociationRules:\n”,association_rules)

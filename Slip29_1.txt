@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Number Operations</title>
+</head>
+<body>
+	<h1>Number Operations</h1>
+	<form method="POST">
+		<p>
+			<label>Enter a number:</label>
+			<input type="number" name="number" required>
+		</p>
+		<p>
+			<input type="submit" name="submit" value="Calculate">
+		</p>
+	</form>
+	<?php
+	
+	if (isset($_POST["submit"])) {
+		$number = $_POST["number"];
+		echo "<h2>Fibonacci Series:</h2>";
+		echo fibonacciSeries($number);
+		echo "<h2>Sum of Digits:</h2>";
+		echo sumOfDigits($number);
+	}
+
+	function fibonacciSeries($number) {
+		$previous = 0;
+		$current = 1;
+		$series = "0, 1";
+		for ($i = 2; $i < $number; $i++) {
+			$next = $previous + $current;
+			$series .= ", $next";
+			$previous = $current;
+			$current = $next;
+		}
+		return "<p>$series</p>";
+	}
+
+	
+	function sumOfDigits($number) {
+		$sum = 0;
+		while ($number > 0) {
+			$digit = $number % 10;
+			$sum += $digit;
+			$number = floor($number / 10);
+		}
+		return "<p>$sum</p>";
+	}
+	?>
+</body>
+</html>
+
+###########################################################################
+
+Importpandasaspd
+Fromsklearn.linear_modelimportLogisticRegression
+Fromsklearn.model_selectionimporttrain_test_split
+Fromsklearn.metricsimportaccuracy_score
+
+Data=pd.read_csv(‘student_scores.csv’)
+
+X=data.iloc[:,:-1].values
+Y=data.iloc[:,-1].values
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=0)
+
+Classifier=LogisticRegression()
+Classifier.fit(X_train,y_train)
+
+Y_pred=classifier.predict(X_test)
+Accuracy=accuracy_score(y_test,y_pred)
+Print(“Accuracy:”,accuracy)

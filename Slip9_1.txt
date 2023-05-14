@@ -1,0 +1,54 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function pasuser(form) {
+if (form.id.value=="ty") { 
+if (form.pass.value=="bcs") {              
+alert("welcome Login successful");
+} else {
+alert("Invalid Password")
+}
+} else {  alert("Invalid UserID")
+}
+}
+
+</script>
+</head>
+<body>
+<center>
+<form name="login">
+Login Area <br>
+UserID:<input name="id" type="text"><br><br>
+Password:<input name="pass"type="password"><br>
+<input type="button" value="Login"onClick="pasuser(this.form)">
+<input type="Reset"></form></center></body></html>
+
+###########################################################################
+Items=[‘item1’,’item2’,’item3’,’item4’]
+Transactions=[ [‘item1’,‘item2’,‘item3’],
+[‘item2’,‘item3’],
+[‘item1’,‘item2’,‘item4’],
+[‘item1’,‘item4’],
+[‘item2’,‘item3’,‘item4’],
+[‘item1’,‘item3’,‘item4’],
+[‘item1’,‘item2’],
+[‘item1’,‘item3’],
+[‘item3’,‘item4’],
+[‘item2’,‘item4’]
+]
+Frommlxtend.preprocessingimportTransactionEncoder
+Frommlxtend.frequent_patternsimportapriori,association_rules
+
+Te=TransactionEncoder()
+Te_ary=te.fit_transform(transactions)
+
+Df=pd.DataFrame(te_ary,columns=te.columns_)
+
+Frequent_itemsets=apriori(df,min_support=0.3,use_colnames=True)
+
+Association_rules=association_rules(frequent_itemsets,metric=”confidence”,
+min_threshold=0.7)
+
+Print(frequent_itemsets)
+Print(association_rules)
